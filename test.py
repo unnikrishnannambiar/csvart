@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 plt.rcParams['font.family'] = 'Helvetica'
 S = pd.DataFrame()
-Tickers = ['LICHSGFIN.NS', 'CANBK.NS', 'HDFCBANK.NS', 'RELIANCE.NS']
+Tickers = ['SBIN.NS', 'TCS.NS', 'INFY.NS', 'TORNTPHARM.NS']
 
 start = datetime(2016, 9, 1)
 end = datetime(2019, 9, 1)
@@ -30,14 +30,11 @@ num_shades = len(val) + 1
 pal = sns.color_palette(sns.cubehelix_palette(num_shades, rot=-float(str(np.random.random())[1:3])))
 col = pal.as_hex()
 col = pal.as_hex()
-text = ''
-for i in Tickers:
-    text += i[:-3] + ' '
-print(text)
+
 plt.figure(figsize=(16,9))
 # plt.title(text, fontsize = 'xx-large', fontweight = 'bold')
 plt.fill_between(S[val[0][1]].index,S[val[0][1]].max(), color = str(col[0]))
-
+plt.scatter(S.index[int(len(S) * np.random.random())],S[val[1][1]].max(), marker = "o", s = ((1+1)**4)*50, alpha = 0.3, color = col[-2])
 for temp in range(len(val)):
     i = val[temp][1]
     plt.fill_between(S[i].index,S[i], color = str(col[temp + 1]))
